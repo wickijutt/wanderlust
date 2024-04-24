@@ -37,6 +37,66 @@ _I'd love for you to make the most of this project - it's all about learning, he
    ```bash
    npm i
    ```
+Steps to follow
+
+3: ls and check the folder and enter into the folder (cd wanderlust).
+
+now follow the steps on readme file of repositry and if its not working then install it like this but make sure to install it on your Ec2 working directory like cd ..  to come back your directory.
+
+# installs NVM (Node Version Manager)
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
+
+# sudo reboot
+
+# download and install Node.js
+nvm install 21
+
+# verifies the right Node.js version is in the environment
+node -v # should print `v21.7.3`
+
+# verifies the right NPM version is in the environment
+npm -v # should print `10.5.0`
+
+Set up your MongoDB Database:
+
+https://www.mongodb.com/docs/manual/tutorial/install-mongodb-on-ubuntu/
+
+
+Import the public key used by the package management system
+From a terminal, install gnupg and curl if they are not already available:
+
+1: sudo apt-get install gnupg curl
+
+To import the MongoDB public GPG key, run the following command:
+
+2: curl -fsSL https://www.mongodb.org/static/pgp/server-7.0.asc | \
+   sudo gpg -o /usr/share/keyrings/mongodb-server-7.0.gpg \
+   --dearmor
+
+3: echo "deb [ arch=amd64,arm64 signed-by=/usr/share/keyrings/mongodb-server-7.0.gpg ] https://repo.mongodb.org/apt/ubuntu jammy/mongodb-org/7.0 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-7.0.list
+
+4: sudo apt-get update
+
+
+5: sudo apt-get install -y mongodb-org
+
+Start MongoDB.
+You can start the mongod process by issuing the following command:
+
+sudo systemctl start mongod
+
+ then check by writing a command
+
+mangosh
+ if it is working then write exit to comeback from mango.
+
+Then go back to the git repository and follow the steps asked by developer:
+
+cd wanderlust/backend
+
+4: mongoimport --db wanderlust --collection posts --file ./data/sample_posts.json --jsonArray 
+
+
 
 4. **Set up your MongoDB Database**
 
