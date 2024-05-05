@@ -21,7 +21,7 @@ COPY . .
 
 #------------------------------------STAGE 2------------------------------------------------------
 
-FROM node:21-alpine-slim
+FROM node:21-alpine
 
 #setup the working dir to /app
 

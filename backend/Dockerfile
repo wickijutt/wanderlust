@@ -1,6 +1,6 @@
 #stage 1
 
-FROM node:21 AS Backend-Build
+FROM node:21-alpine AS Backend-Build
 
 #setup the working dir
 
@@ -9,13 +9,20 @@ WORKDIR /app
 
 #code
 
-COPY . .
+COPY package*.json ./
 
-RUN npm i
+
+#install dependency
+RUN npm install
+
+#copy the rest of the application code
+
+
+COPY . .
 
 #Stage 2
 
-FROM node:21-slim
+FROM node:21-alpine
 
 #setup the working dir
 
@@ -24,6 +31,11 @@ WORKDIR /app
 
 #copy the above stage as compressed
 COPY --from=Backend-Build /app .
+
+#install system dependencies
+RUN apk add --no-cache build-base
+
+
 
 COPY .env.sample .env
 
